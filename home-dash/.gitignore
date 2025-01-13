@@ -41,4 +41,4 @@ yarn-error.log*
 next-env.d.ts
 
 # data
-/src/app/api/wake/data.ts
+/src/app/api/wake/data.*
