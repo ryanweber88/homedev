@@ -8,12 +8,12 @@ export async function GET(request: NextRequest) {
   // Get pc to wake from request parameters
   const pc = request.nextUrl.searchParams.get('pc');
 
-  // Check to see if the pc parameter is provided
+  // Check if the pc parameter is provided
   if (!pc) {
     return NextResponse.json({ message: 'Invalid PC' }, { status: 400 });
   }
 
-  // If pc parameter provded is 'all', wake all pcs
+  // If pc parameter provded is 'all', wake all defined pcs
   if (pc === 'all') {
     if (wakeAll() === false) {
       return NextResponse.json({ message: 'Failed to wake all PCs' }, { status: 500 });
@@ -42,29 +42,38 @@ export async function GET(request: NextRequest) {
 
 // wakeAll should return a string array of awoken PCs
 const wakeAll = () => {
-  pc_map.pcs.forEach((pc) => {
-    wol(pc.mac).then(() => {
-      console.log(`Attempting to wake PC: ${pc.name}`);
+  try {
+    pc_map.pcs.forEach((pc) => {
+      wol(pc.mac).then(() => {
+        console.log(`Attempting to wake PC: ${pc.name}`);
+      });
     });
-  });
 
-  return true;
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
 }
 
 const wakePC = (pc: string) => {
-  // Get the mac address of the pc
-  const mac = pc_map.pcs.find((element) => element.name === pc)?.mac;
+  try {
+    // Get the mac address of the pc
+    const mac = pc_map.pcs.find((element) => element.name === pc)?.mac;
 
-  // Check to see if the pc exists
-  if (!mac) {
-    console.log(`PC ${pc} not found`);
+    // Check to see if the pc exists
+    if (!mac) {
+      throw new Error(`PC: ${pc} not found`);
+    }
+
+    // Wake the pc
+    wol(mac).then(() => {
+      console.log(`Attempting to wake PC: ${pc}`);
+    });
+
+    return true;
+  } catch (error) {
+    console.error(error);
     return false;
   }
-
-  // Wake the pc
-  wol(mac).then(() => {
-    console.log(`Attempting to wake PC: ${pc}`);
-  });
-
-  return true;
 }
