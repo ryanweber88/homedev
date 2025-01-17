@@ -1,0 +1,46 @@
+# dependencies
+./wake-on-lan-local/next.js-app/node_modules
+./wake-on-lan-local/node-app/node_modules
+./wake-on-lan-local/next.js-app/.pnp
+./wake-on-lan-local/next.js-app/.pnp.*
+./wake-on-lan-local/next.js-app/.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+./wake-on-lan-local/next.js-app/coverage
+
+# next.js
+.next/
+./wake-on-lan-local/next.js-app/.next/
+./wake-on-lan-local/next.js-app/out/
+
+# production
+./wake-on-lan-local/next.js-app/build
+
+# misc
+./wake-on-lan-local/next.js-app/.DS_Store
+./wake-on-lan-local/next.js-app/*.pem
+
+# debug
+./wake-on-lan-local/next.js-app/npm-debug.log*
+./wake-on-lan-local/next.js-app/yarn-debug.log*
+./wake-on-lan-local/next.js-app/yarn-error.log*
+./wake-on-lan-local/next.js-app/.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+./wake-on-lan-local/next.js-app/.env*
+./wake-on-lan-local/node-app/.env*
+
+# vercel
+./wake-on-lan-local/next.js-app/.vercel
+
+# typescript
+./wake-on-lan-local/next.js-app/*.tsbuildinfo
+./wake-on-lan-local/next.js-app/next-env.d.ts
+
+# data
+./wake-on-lan-local/next.js-app/src/app/api/wake/data.ts
+./wake-on-lan-local/node-app/src/data.ts
