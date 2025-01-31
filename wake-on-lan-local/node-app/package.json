@@ -13,6 +13,7 @@
     "wakeonlan": "latest"
   },
   "devDependencies": {
+    "@types/cypress": "^0.1.6",
     "@types/express": "^4.17.15",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
@@ -20,7 +21,12 @@
   "engines": {
     "node": ">=14.0.0"
   },
-  "keywords": ["wake-on-lan", "express", "node", "typescript"],
+  "keywords": [
+    "wake-on-lan",
+    "express",
+    "node",
+    "typescript"
+  ],
   "author": "",
   "license": "MIT"
 }

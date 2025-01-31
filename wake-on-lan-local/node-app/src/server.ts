@@ -8,6 +8,10 @@ const port = 3000;
 // Middleware to parse JSON bodies
 app.use(express.json());
 
+app.get('/health', (req: Request, res: Response) => {
+  res.json({ status: 'OK' });
+});
+
 // Endpoint to wake up a device using its name
 app.get('/wake/:pc', async (req: Request, res: Response) => {
   const { pc } = req.params;
